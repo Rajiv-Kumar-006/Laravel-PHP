@@ -47,6 +47,8 @@
 
         </h3>
     </div>
+    <hr>
+    <hr>
 
     <div class="subView">
         <div>
@@ -62,8 +64,40 @@
             </h3>
         </div>
     </div>
+    <hr>
+    <hr>
+
+    <div class="components">
+        <h1>Components</h1>
+        <div>
+            <x-message-banner heading="Add success message banner content with home page here." msg=" This is a success message. Everything is working fine!" class="success" />
+
+            <x-message-banner heading="Add error message banner content with home page here." msg=" This is an error message. Something went wrong!" class="error" />
+        </div>
+    </div>
 
 </div>
+
+
+<style>
+    .success {
+        color: green;
+        border: 1px solid green;
+        padding: 10px;
+    }
+
+    .error {
+        color: red;
+        border: 1px solid red;
+        padding: 10px;
+    }
+
+    .warning {
+        color: orange;
+        border: 1px solid orange;
+        padding: 10px;
+    }
+</style>
 
 <!-- if else -->
 <!-- <h1>Hello, This is the Home Page.</h1>
