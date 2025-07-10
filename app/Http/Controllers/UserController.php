@@ -13,10 +13,10 @@ class UserController extends Controller
         $users = ["Rajiv", "Rohit", "Sanjay", "Amit"];
         return view("home", [
             "name" => $name,
-            "user" => $users
+            "users" => $users
         ]);
     }
-    
+
     function getUser()
     {
         return "<h2> Hello, This is the get user routes + controller </h2>";
