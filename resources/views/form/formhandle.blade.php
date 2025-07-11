@@ -6,36 +6,46 @@
     <title>Add User Form</title>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
-            padding: 40px;
+            font-family: 'Segoe UI', 'Poppins', Arial, sans-serif;
+            background: linear-gradient(120deg, #e0e0e0 0%, #bdbdbd 100%);
             min-height: 100vh;
+            margin: 0;
             display: flex;
-            justify-content: center;
             align-items: center;
-            transition: background 0.5s;
+            justify-content: center;
+            box-shadow: 0 0 40px 0 rgba(60, 60, 60, 0.13);
         }
 
         .form-container {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 36px 44px;
-            border-radius: 18px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
-            width: 420px;
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(253, 160, 133, 0.18);
+            padding: 44px 38px 32px 38px;
+            width: 430px;
+            margin: 0 auto;
             animation: fadeIn 0.7s;
+            position: relative;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px);}
-            to { opacity: 1; transform: translateY(0);}
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .form-container h2 {
-            margin-bottom: 28px;
-            color: #2d3a4b;
+            margin-bottom: 32px;
+            color: #fd7e50;
             text-align: center;
-            letter-spacing: 1px;
-            font-size: 2rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
         }
 
         .input-wrapper,
@@ -43,61 +53,63 @@
         .radio-wrapper,
         .select-wrapper,
         .range-wrapper {
-            margin-bottom: 22px;
+            margin-bottom: 24px;
         }
 
         label {
             font-weight: 600;
-            color: #4a5a6a;
-        }
-
-        .input-wrapper label,
-        .select-wrapper label,
-        .range-wrapper label {
-            display: block;
+            color: #fd7e50;
             margin-bottom: 7px;
+            display: block;
         }
 
         input[type="text"],
         input[type="email"],
         input[type="password"],
-        select {
+        input[type="tel"],
+        input[type="date"],
+        select,
+        textarea {
             width: 100%;
-            padding: 12px 14px;
-            border: 1.5px solid #d1d9e6;
-            border-radius: 8px;
-            font-size: 15px;
-            background: #f8fafc;
+            padding: 13px 15px;
+            border: 1.5px solid #ffd6c0;
+            border-radius: 10px;
+            font-size: 16px;
+            background: #fff7f3;
             transition: border-color 0.2s, box-shadow 0.2s;
+            margin-top: 4px;
         }
 
         input:focus,
-        select:focus {
+        select:focus,
+        textarea:focus {
             outline: none;
-            border-color: #5b9df9;
-            box-shadow: 0 0 0 2px rgba(91, 157, 249, 0.13);
-            background: #f0f7ff;
+            border-color: #fd7e50;
+            box-shadow: 0 0 0 2px #fd7e5033;
+            background: #fff;
         }
 
         .checkbox-wrapper label,
         .radio-wrapper label {
+            display: inline-block;
             margin-right: 18px;
-            font-weight: normal;
-            color: #555;
+            font-weight: 500;
+            color: #fd7e50;
             cursor: pointer;
+            font-size: 1.01rem;
         }
 
         .checkbox-wrapper input,
         .radio-wrapper input {
+            accent-color: #fd7e50;
             margin-right: 7px;
-            accent-color: #5b9df9;
+            transform: scale(1.13);
             cursor: pointer;
-            transform: scale(1.1);
         }
 
         .range-wrapper input[type="range"] {
             width: 100%;
-            accent-color: #5b9df9;
+            accent-color: #fd7e50;
             margin-top: 7px;
         }
 
@@ -105,28 +117,8 @@
             display: inline-block;
             margin-top: 8px;
             font-weight: bold;
-            color: #2d3a4b;
+            color: #fd7e50;
             font-size: 1.1em;
-        }
-
-        button {
-            width: 100%;
-            background: linear-gradient(90deg, #5b9df9 0%, #3c7fd9 100%);
-            color: white;
-            border: none;
-            padding: 14px;
-            font-size: 17px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 2px 8px rgba(91, 157, 249, 0.08);
-            transition: background 0.2s, transform 0.1s;
-        }
-
-        button:hover {
-            background: linear-gradient(90deg, #3c7fd9 0%, #5b9df9 100%);
-            transform: translateY(-2px) scale(1.02);
         }
 
         .error-message {
@@ -137,11 +129,42 @@
             min-height: 18px;
         }
 
+        button {
+            width: 100%;
+            background: linear-gradient(90deg, #fd7e50 0%, #f6d365 100%);
+            color: white;
+            border: none;
+            padding: 15px 0;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            letter-spacing: 0.7px;
+            box-shadow: 0 2px 12px rgba(253, 160, 133, 0.13);
+            transition: background 0.2s, transform 0.13s, box-shadow 0.2s;
+        }
+
+        .input-error {
+            border: 1px solid red;
+            background-color: #ffe5e5;
+        }
+
+        .text-danger {
+            color: red;
+            font-size: 13px;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #f6d365 0%, #fd7e50 100%);
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 4px 20px rgba(253, 160, 133, 0.18);
+        }
+
         /* Responsive */
-        @media (max-width: 500px) {
+        @media (max-width: 600px) {
             .form-container {
                 width: 98vw;
-                padding: 18px 6vw;
+                padding: 18px 4vw;
             }
         }
     </style>
@@ -155,45 +178,52 @@
 
             <div class="input-wrapper">
                 <label for="username">UserName :</label>
-                <input type="text" name="username" id="username" placeholder="Enter your username">
-                <span class="error-message">@error("username"){{$message}}@enderror</span>
+                <input type="text" name="username" id="username" placeholder="Enter your username" value="{{ old('username') }}" class="{{ $errors->has('username') ? 'input-error' : '' }}">
+                <span class="error-message"> @error('username')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror</span>
             </div>
 
             <div class="input-wrapper">
                 <label for="email">Email :</label>
-                <input type="email" name="email" id="email" placeholder="Enter your email">
-                <span class="error-message">@error("email"){{$message}}@enderror</span>
+                <input type="email" name="email" id="email" placeholder="Enter your email" value="{{ old('email') }}" class="{{ $errors->has('email') ? 'input-error' : '' }}">
+                <span class="error-message"> @error('email')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror</span>
             </div>
 
             <div class="input-wrapper">
                 <label for="password">Password :</label>
-                <input type="password" name="password" id="password" placeholder="Enter your password">
-                <span class="error-message">@error("password"){{$message}}@enderror</span>
+                <input type="password" name="password" id="password" placeholder="Enter your password" value="{{ old('password') }}" class="{{ $errors->has('password') ? 'input-error' : '' }}">
+                <span class="error-message"> @error('password')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror</span>
             </div>
 
             <div class="checkbox-wrapper">
                 <label>Skills :</label>
                 <input type="checkbox" name="skill[]" value="HTML" id="html">
                 <label for="html">HTML</label>
-
                 <input type="checkbox" name="skill[]" value="PHP" id="php">
                 <label for="php">PHP</label>
-
                 <input type="checkbox" name="skill[]" value="JAVASCRIPT" id="javascript">
                 <label for="javascript">JAVASCRIPT</label>
                 <br>
-                <span class="error-message">@error("skill"){{$message}}@enderror</span>
+                <span class="error-message"> @error('skill')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror</span>
             </div>
 
             <div class="radio-wrapper">
                 <label>Gender :</label>
                 <input type="radio" name="gender" value="male" id="male">
                 <label for="male">Male</label>
-
                 <input type="radio" name="gender" value="female" id="female">
                 <label for="female">Female</label>
                 <br>
-                <span class="error-message">@error("gender"){{$message}}@enderror</span>
+                <span class="error-message"> @error('gender')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror</span>
             </div>
 
             <div class="select-wrapper">
@@ -205,7 +235,9 @@
                     <option value="UK">UK</option>
                     <option value="Canada">Canada</option>
                 </select>
-                <span class="error-message">@error("country"){{$message}}@enderror</span>
+                <span class="error-message"> @error('country')
+                    <small class="text-danger">{{ $message }}</small>
+                    @enderror</span>
             </div>
 
             <div class="range-wrapper">
@@ -217,8 +249,8 @@
             <div>
                 <button type="submit">Submit</button>
             </div>
-
         </form>
     </div>
 </body>
+
 </html>
