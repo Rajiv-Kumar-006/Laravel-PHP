@@ -2,56 +2,63 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\formController;
-use App\Http\Controllers\adminController;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\AdminController;
 
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application.
+| These routes are loaded by the RouteServiceProvider within a group
+| which contains the "web" middleware group. Now create something great!
+|
+*/
 
-
-// Admin routes
-Route::prefix("admin")->group(function () {
-    Route::get("/dashboard", [adminController::class, "show"])->name("admin.dashboard");
-    Route::get("/profile", [adminController::class, "profile"])->name("admin.profile");
-    Route::get("/settings", [adminController::class, "add"])->name("admin.settings");
-    Route::get("/user", [adminController::class, "user"])->name("admin.user");
+//  Admin routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'show'])->name('dashboard');
+    Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+    Route::get('/settings', [AdminController::class, 'add'])->name('settings');
+    Route::get('/user', [AdminController::class, 'user'])->name('user');
 });
 
-
-
-
-
-
-
-
-
+//  Home route
 Route::get('/', function () {
     return view('welcome');
 });
 
+//  User home page
+Route::get('/home', [UserController::class, 'userHome'])->name('home');
 
-Route::get("/home", [UserController::class, "userHome"]);
+// About page with dynamic name
+Route::get('/about/{name}', function ($name) {
+    return view('about', compact('name'));
+})->name('about');
 
-Route::get("/about/{name}", function ($name) {
-    // $name = "Laravel 12";
-    return view("about", compact("name"));
+//  Contact page with dynamic contact info
+Route::get('/contact/{contactInfo}', function ($contactInfo) {
+    return view('contact', ['contactInfo' => $contactInfo]);
+})->name('contact');
+
+//  UserController additional routes
+// Route::get('/user', [UserController::class, 'getUser'])->name('user.index');
+// Route::get('/about1', [UserController::class, 'getAbout'])->name('about1');
+// Route::get('/username/{name}', [UserController::class, 'getUserName'])->name('username');
+// Route::get('/display/username/{name}', [UserController::class, 'displayUserName'])->name('display.username');
+
+//  route grouping with controllers
+Route::controller(UserController::class)->group(function () {
+    Route::get('/user', 'getUser')->name('user.index');
+    Route::get('/about1', 'getAbout')->name('about1');
+    Route::get('/username/{name}', 'getUserName')->name('username');
+    Route::get('/display/username/{name}', 'displayUserName')->name('display.username');
 });
 
-Route::get("/contact/{contactInfo}", function ($contactInfo) {
+// 🔷 Form routes
+Route::get('/form', function () {
+    return view('form.formhandle');
+})->name('form');
 
-    return view("contact", ["contactInfo" => $contactInfo]);
-});
-
-// controller routes call 
-Route::get("user", [UserController::class, "getUser"]);
-Route::get("about1", [UserController::class, "getAbout"]);
-Route::get("username/{name}", [UserController::class, "getUserName"]);
-
-Route::get("display/username/{name}", [UserController::class, "displayUserName"]);
-
-
-// ✅ Show form page
-Route::get("form", function () {
-    return view("form.formhandle");
-});
-
-// ✅ Handle form POST submission
-Route::post("form", [formController::class, "formSubmit"]);
+Route::post('/form', [FormController::class, 'formSubmit'])->name('form.submit');
