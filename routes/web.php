@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\formController;
+use App\Http\Controllers\adminController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,3 +37,12 @@ Route::get("form", function () {
 
 // ✅ Handle form POST submission
 Route::post("form", [formController::class, "formSubmit"]);
+
+
+
+// Admin routes
+Route::prefix("admin")->group(function(){
+    Route::get("/dashboard",[adminController::class, "show"])->name("admin.dashboard");
+    Route::get("/settings",[adminController::class, "add"])->name("admin.setting");
+    Route::get("/user",[adminController::class, "user"])->name("admin.user");
+});
