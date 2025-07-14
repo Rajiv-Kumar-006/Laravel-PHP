@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin User</title>
+    <title>Admin Profile</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
@@ -13,7 +13,7 @@
             align-items: center;
             justify-content: center;
         }
-        .user-card {
+        .profile-card {
             background: #fff;
             border-radius: 16px;
             box-shadow: 0 8px 32px 0 rgba(60,60,60,0.13);
@@ -22,28 +22,38 @@
             text-align: center;
         }
         h1 {
-            color: #333;
+            color: #1976d2;
             margin-bottom: 28px;
+            font-size: 2rem;
+            font-weight: 700;
         }
         a {
             display: inline-block;
             margin: 10px 0;
-            color: #1976d2;
+            color: #fd7e50;
             text-decoration: none;
             font-weight: 500;
             font-size: 1.08rem;
             transition: color 0.2s;
         }
         a:hover {
-            color: #fd7e50;
+            color: #1976d2;
             text-decoration: underline;
+        }
+        .quote {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 18px;
+            font-style: italic;
         }
     </style>
 </head>
 <body>
-    <div class="user-card">
-        <h1>This is Admin User Page.</h1>
+    <div class="profile-card">
+        <h1>Admin Profile</h1>
+        <a href="{{ route('admin.settings') }}">Go to settings</a>
+        <br>
         <a href="{{ route('admin.dashboard') }}">Back to Dashboard</a>
-    </div>
+       
 </body>
 </html>

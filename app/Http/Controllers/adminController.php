@@ -11,6 +11,10 @@ class adminController extends Controller
     {
         return view("admin.adminDashboard");
     }
+    function profile()
+    {
+       return view("admin.adminProfile");
+    }
     //
     function add()
     {
