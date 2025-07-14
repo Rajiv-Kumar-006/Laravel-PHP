@@ -18,8 +18,11 @@
         <!-- anchor tag -->
         <h2>Anchor tag</h2>
         <ul>
-            <li><a href="/about/rajiv">About</a></li>
-            <li><a href="/contact/98765432">Contact</a></li>
+            <!-- <li><a href="/about/rajiv">About</a></li>
+            <li><a href="/contact/98765432">Contact</a></li> -->
+
+             <li><a href="{{URL :: to ('about'),[''rajiv] }}">About</a></li>
+            <li><a href="{{URL :: to ('contact'),[''98765432] }}">Contact</a></li>
         </ul>
 
         <!-- loops -->
