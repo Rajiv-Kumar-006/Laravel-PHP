@@ -5,24 +5,24 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application.
-| These routes are loaded by the RouteServiceProvider within a group
-| which contains the "web" middleware group. Now create something great!
-|
-*/
 
 //  Admin routes
-Route::prefix('admin')->name('admin.')->group(function () {
+// Route::prefix('admin')->name('admin.')->group(function () {
+//     Route::get('/dashboard', [AdminController::class, 'show'])->name('dashboard');
+//     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
+//     Route::get('/settings', [AdminController::class, 'add'])->name('settings');
+//     Route::get('/user', [AdminController::class, 'user'])->name('user');
+// });
+
+// Middleware routes
+Route::prefix('admin')->name('admin.')->middleware('web')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'show'])->name('dashboard');
     Route::get('/profile', [AdminController::class, 'profile'])->name('profile');
     Route::get('/settings', [AdminController::class, 'add'])->name('settings');
     Route::get('/user', [AdminController::class, 'user'])->name('user');
 });
+
+
 
 //  Home route
 Route::get('/', function () {

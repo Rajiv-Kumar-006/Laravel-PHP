@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Admin Settings</title>
@@ -13,20 +14,23 @@
             align-items: center;
             justify-content: center;
         }
+
         .settings-card {
             background: #fff;
             border-radius: 16px;
-            box-shadow: 0 8px 32px 0 rgba(60,60,60,0.13);
+            box-shadow: 0 8px 32px 0 rgba(60, 60, 60, 0.13);
             padding: 36px 32px;
             min-width: 340px;
             text-align: center;
         }
+
         h1 {
             color: #fd7e50;
             margin-bottom: 18px;
             font-size: 2rem;
             font-weight: 700;
         }
+
         .quote {
             color: #888;
             font-size: 1rem;
@@ -35,9 +39,14 @@
         }
     </style>
 </head>
+
 <body>
+    @php
+    $queryString = http_build_query(request()->query());
+    @endphp
     <div class="settings-card">
         <h1>This is Admin Setting Page.</h1>
-        <a href="{{route('admin.profile')}}">Back to Profile</a>
+        <a href="{{route('admin.profile')}}? {{$queryString }}">Back to Profile</a>
 </body>
+
 </html>
